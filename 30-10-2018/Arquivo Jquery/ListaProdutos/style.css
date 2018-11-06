@@ -1,0 +1,45 @@
+.div-img{
+    width: 70%;
+    height: 50%;
+    margin-bottom: 40px;
+}
+
+.border-bottom-nome{
+    border-bottom: none;
+}
+
+.div-container {
+    padding-top: 10px;
+    
+}
+
+.div-listProducts {
+    float: left;
+    border-top: none;
+
+}
+
+.div-cart {
+    float: right;
+    border: 1px;
+    border-radius: 1px;
+    height: 40%;
+}
+
+.border{
+    border-radius: 8px;
+}
+
+.border-table{
+    border:1px solid gray;
+    border-radius: 5px;
+}
+
+.margin-bottom{
+    margin-bottom: 50px;
+}
+
+.input-changeable{
+    text-align: center;
+}
+

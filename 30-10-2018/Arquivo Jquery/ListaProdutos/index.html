@@ -1,0 +1,79 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="script.js"></script>
+
+    <title>Exercício Lista de Produtos</title>
+</head>
+
+<body>
+    <div class="container div-container">
+        <center>
+            <h2>Lista de Produtos</h1>
+
+        </center>
+
+        <div class="row border margin-bottom" style="padding:2%;">
+            <div class="col">
+                <div id="Produts" class="col div-listProducts ">
+                    <h3>Produtos</h3>
+                    <table id="tblProducts" class="table border">
+
+                    </table>
+
+                </div>
+            </div>
+
+            <div class="col">
+                <div id="ProductSelected" class="div-img div-cart">
+                    <h3>Carrinho</h3>
+                    <img id="imgProduct" src="images/shoppingcart.png" class="img-fluid">
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row" id="ShoppingCart">
+            <div class="col ">
+                <table id="tblShoppingCart" class="table  border-table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>QUANTIDADE</th>
+                            <th>PRODUTO</th>
+                            <th>VALOR UNIT.</th>
+                            <th>SUBTOTAL</th>
+                            <th>AÇÕES</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr id="divTotalPrice">
+                            <td></td>
+                            <td><b>DESCONTO: %</b></td>
+                            <td>
+                                <input type="number" id="Discount" class="input-changeable" />
+                            </td>
+                            <td><b>TOTAL: </b></td>
+                            <td id="TotalPrice"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+    </div>
+</body>
+
+</html>

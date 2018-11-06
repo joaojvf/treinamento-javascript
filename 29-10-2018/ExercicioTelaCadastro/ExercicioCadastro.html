@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <title>Exercício Tela de Cadastro</title>
+</head>
+
+<body>
+        <div class="container-fluid col-md-3 " style=" padding: 4px;">
+            <div class="form-group">
+                <div>
+                    <div>
+                        <select id="tipoPessoa" style="border: 3px solid;">
+                            <option value="fisica">Física</option>
+                            <option value="juridica">Jurídica</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <span> Nome: </span>
+                    <div>
+                        <input type="text" id="txtNome" style="border: 3px solid;">
+                    </div>
+                </div>
+
+                <div>
+                    <span> Telefone: </span>
+                    <div>
+                        <input type="number" id="txtTelefone" style="border: 3px solid;">
+                    </div>
+                </div>
+            </div>
+            <button type="button" class="btn btn-dark" onclick="btnSalvarForm()">Salvar</button>
+        </div>
+
+ 
+
+    <br><br><br>
+
+    <div class="container">
+        <div id="ListaSalva">
+            <table id="Itens" class="table text-center" style="border : 3px solid;">
+
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>
