@@ -14,6 +14,7 @@
         crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
     <script src="script.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.0/jquery.mask.js"></script>
     <title>Registro de Imóveis</title>
 </head>
 
@@ -61,7 +62,7 @@
                         </div>
                         <div class="margin-bottom">
                             <label>Telefone:</label>
-                            <input id="txtTelefoneCasa" class="form-control" type="text" />
+                            <input type="text" id="txtTelefoneCasa" class="form-control"  />
                         </div>
                     </div>
 
@@ -73,57 +74,45 @@
 
 
         </div>
-        <div id="formApartment" class="form-group form-home">
-            <!--
+        <div id="formApartment" class="form-group form-apt">
             <div class="row">
                 <h2>Informações dos Apartamentos</h2>
-                <table id="tabHome" class="table">
-                    <tr>
-                        <th>Endereço</th>
-                        <th>Número</th>
-                        <th>Complemento</th>
-                        <th>Telefone</th>
-                        <th>Garagem</th>
-                        <th>Data Compra</th>
-                        <th>Valor</th>
-                        <th>Piscina</th>
-                        <th>Quadra</th>
-                        <th>Ações</th>
-                    </tr>
+                <table id="tabApt" class="table table-bordered">
+                   
                 </table>
             </div>
-        -->
+
             <form>
                 <div class="form-row">
                     <div class="col">
                         <div class="margin-bottom">
                             <label>Endereço:</label>
-                            <input id="txtEndereco" class="form-control" type="text" />
+                            <input id="txtEnderecoApt" class="form-control" type="text" />
                         </div>
                         <div class="margin-bottom">
                             <label>Complemento:</label>
-                            <input id="txtComplemento" class="form-control" type="text" />
+                            <input id="txtComplementoApt" class="form-control" type="text" />
                         </div>
 
 
                         <div class="row">
                             <div class="col">
                                 <div class="custom-control custom-checkbox margin-bottom">
-                                    <input type="checkbox" class="custom-control-input" id="checkGaragem">
-                                    <label class="custom-control-label" for="checkGaragem">Vaga na Garagem</label>
+                                    <input type="checkbox" class="custom-control-input" id="checkGaragemApt">
+                                    <label class="custom-control-label" for="checkGaragemApt">Vaga na Garagem</label>
                                 </div>
                             </div>
 
                             <div class="col">
                                 <div class="custom-control custom-checkbox margin-bottom">
-                                    <input type="checkbox" class="custom-control-input" id="checkPiscina">
-                                    <label class="custom-control-label" for="checkPiscina">Piscina</label>
+                                    <input type="checkbox" class="custom-control-input" id="checkPiscinaApt">
+                                    <label class="custom-control-label" for="checkPiscinaApt">Piscina</label>
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="custom-control custom-checkbox margin-bottom">
-                                    <input type="checkbox" class="custom-control-input" id="checkQuadra">
-                                    <label class="custom-control-label" for="checkQuadra">Quadra</label>
+                                    <input type="checkbox" class="custom-control-input" id="checkQuadraApt">
+                                    <label class="custom-control-label" for="checkQuadraApt">Quadra</label>
                                 </div>
                             </div>
                         </div>
@@ -134,32 +123,32 @@
                     <div class="col">
                         <div class="margin-bottom">
                             <label>Número:</label>
-                            <input id="txtNumero" class="form-control" type="number" />
+                            <input id="txtNumeroApt" class="form-control" type="number" />
 
                         </div>
 
                         <div class="margin-bottom">
                             <label>Telefone:</label>
-                            <input id="txtTelefone" class="form-control" type="text" />
+                            <input id="txtTelefoneApt" class="form-control" type="text" />
                         </div>
 
 
                         <div class="row">
                             <div class="col margin-bottom">
                                 <label>Data da Compra</label>
-                                <input id="txtDataCompra" class="form-control" type="date" />
+                                <input id="txtDataCompraApt" class="form-control" type="date" />
                             </div>
 
                             <div class="col margin-bottom">
                                 <label>Valor:</label>
-                                <input id="txtValor" class="form-control" type="number" />
+                                <input id="txtValorApt" class="form-control" type="text" />
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="row">
-                    <input id="btnSaveHome" type="button" class="btn btn-success col-md-1 offset-11" value="Salvar" />
+                    <input id="btnSaveApt" type="button" class="btn btn-success col-md-1 offset-11" value="Salvar" />
                 </div>
 
             </form>
