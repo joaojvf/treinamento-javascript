@@ -33,8 +33,24 @@ $(document).ready(function () {
         }
     });
 
-    $("#txtTelefoneCasa").mask("(99) 99999-9999");
-    $("#txtTelefoneApt").mask("(99) 99999-9999");
+    $("#txtTelefoneCasa").mask('(00) Z 0000-0000', {
+        translation: {
+            'Z': {
+                pattern: /9/,
+                optional: true
+            }
+        }
+    });
+
+    $("#txtTelefoneApt").mask('(00) Z 0000-0000', {
+        translation: {
+            'Z': {
+                pattern: /9/,
+                optional: true
+            }
+        }
+    });
+
     $("#txtValorApt").mask("#.##0,00", { reverse: true });
 
     $("#btnSaveHome").click(function (e) {

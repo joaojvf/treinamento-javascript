@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="script.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.0/jquery.mask.js"></script>
+
+    <title>Banking JQuery</title>
+</head>
+
+<body>
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4">TCS BANKING</h1>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div id="formIni" class="form-group">
+            <label>Tipo de Cliente:</label>
+            <br>
+            <select id="selCliente" class="form-control">
+                <option value="vazio">Selecione</option>
+                <option value="juridica">Pessoa jurídica</option>
+                <option value="fisica">Pessoa física</option>
+                <option value="semConta">Sem conta</option>
+            </select>
+        </div>
+
+        <!--SEM CONTA-->
+
+        <div id="frmSemConta" class="form-group">
+            <form>
+                <div class="form-group">
+                    <label>Nome:</label>
+                    <input type="text" id="txtNomeSemConta" class="form-control" />
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <label>Telefone:</label>
+                        <input type="text" id="txtFoneSemConta" class="form-control" />
+                    </div>
+
+                    <div class="col">
+                        <label>CPF:</label>
+                        <input type="text" id="txtCpfSemConta" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="txtObservacoes">Observações</label>
+                    <textarea class="form-control" id="txtObservacoes" rows="3"></textarea>
+                </div>
+
+            </form>
+
+        </div>
+
+        <!--CONTA FÍSICA-->
+        <div id="frmContaFisica" class="form-group">
+            CONTA FÍSICA
+        </div>
+
+        <!--CONTA JURÍDICA-->
+        <div id="frmContaJuridica" class="form-group">
+            CONTA JURÍDICA
+        </div>
+
+    </div>
+
+</body>
+
+</html>
