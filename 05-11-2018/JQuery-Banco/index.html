@@ -41,8 +41,10 @@
 
         <!--SEM CONTA-->
 
-        <div id="frmSemConta" class="form-group">
+        <div id="frmSemConta" class="form-group frms">
             <form>
+                <h3>Informações Pessoais</h3>
+
                 <div class="form-group">
                     <label>Nome:</label>
                     <input type="text" id="txtNomeSemConta" class="form-control" />
@@ -51,12 +53,12 @@
                 <div class="row">
                     <div class="col">
                         <label>Telefone:</label>
-                        <input type="text" id="txtFoneSemConta" class="form-control" />
+                        <input type="text" id="txtFoneSemConta" class="form-control txtFone" />
                     </div>
 
                     <div class="col">
                         <label>CPF:</label>
-                        <input type="text" id="txtCpfSemConta" class="form-control" />
+                        <input type="text" id="txtCpfSemConta" class="form-control txtCpf" />
                     </div>
                 </div>
 
@@ -70,13 +72,85 @@
         </div>
 
         <!--CONTA FÍSICA-->
-        <div id="frmContaFisica" class="form-group">
-            CONTA FÍSICA
+        <div id="frmContaFisica" class="form-group frms">
+            <form>
+                <div class="row">
+                    <div class="col">
+                        <h3>Informações Pessoais</h3>
+                        <br>
+                        <div class="form-group">
+                            <label>Possui dependente?:</label>
+                            <br>
+                            <select id="selDep" class="form-control">
+                                <option value="vazio">Selecione</option>
+                                <option value="nao">Não</option>
+                                <option value="sim">Sim</option>
+                            </select>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="txtNomeFisica">Nome:</label>
+                                <input type="text" id="txtNomeFisica" class="form-control" />
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="txtFoneFisica">Telefone:</label>
+                                <input type="text" id="txtFoneFisica" class="form-control txtFone" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="txtEnderecoFisica">Endereço:</label>
+                            <input type="text" id="txtEnderecoFisica" class="form-control" />
+                        </div>
+                    </div>
+
+                    <div id="frmDep" class="col">
+
+                    </div>
+                </div>
+            </form>
         </div>
 
         <!--CONTA JURÍDICA-->
-        <div id="frmContaJuridica" class="form-group">
-            CONTA JURÍDICA
+        <div id="frmContaJuridica" class="form-group frms">
+            <form>
+                <div class="row">
+                    <div class="col">
+                        <h3>Informações Jurídicas</h3>
+                        <br>
+                        <div class="form-group">
+                            <label>Limite:</label>
+                            <br>
+                            <select id="selLim" class="form-control">
+                                <option value="vazio">Selecione</option>
+                                <option value="inferior">Inferior a 100.00</option>
+                                <option value="igualSuperior">Igual ou superior a 100.00</option>
+                            </select>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="txtNomeJuridica">Nome:</label>
+                                <input type="text" id="txtNomeJuridica" class="form-control" />
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="txtFoneJuridica">Telefone:</label>
+                                <input type="text" id="txtFoneJuridica" class="form-control txtFone" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="txtEnderecoJuridica">Endereço:</label>
+                            <input type="text" id="txtEnderecoJuridica" class="form-control" />
+                        </div>
+                    </div>
+
+                    <div id="frmLim" class="col">
+
+                    </div>
+                </div>
+            </form>
         </div>
 
     </div>

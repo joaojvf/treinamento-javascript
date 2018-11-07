@@ -50,7 +50,6 @@ $(document).ready(function () {
             }
         }
     });
-
     $("#txtValorApt").mask("#.##0,00", { reverse: true });
 
     $("#btnSaveHome").click(function (e) {
