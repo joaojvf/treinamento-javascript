@@ -22,7 +22,7 @@
 <body>
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
-            <h1 class="display-4">TCS BANKING</h1>
+            <h1 class="display-4"><strong>TCS BANKING</strong> </h1>
         </div>
     </div>
 
@@ -41,7 +41,14 @@
 
         <!--SEM CONTA-->
 
-        <div id="frmSemConta" class="form-group frms">
+        <div id="frmSemConta" class="form-group frms  ">
+
+            <div class="row">
+                <table id="tabSemConta" class="table table-active table-bordered centraliza">
+
+                </table>
+            </div>
+
             <form>
                 <h3>Informações Pessoais</h3>
 
@@ -50,13 +57,13 @@
                     <input type="text" id="txtNomeSemConta" class="form-control" />
                 </div>
 
-                <div class="row">
-                    <div class="col">
+                <div class="form-row">
+                    <div class="form-group col">
                         <label>Telefone:</label>
                         <input type="text" id="txtFoneSemConta" class="form-control txtFone" />
                     </div>
 
-                    <div class="col">
+                    <div class="form-group col">
                         <label>CPF:</label>
                         <input type="text" id="txtCpfSemConta" class="form-control txtCpf" />
                     </div>
@@ -66,16 +73,30 @@
                     <label for="txtObservacoes">Observações</label>
                     <textarea class="form-control" id="txtObservacoes" rows="3"></textarea>
                 </div>
+                <div class="row">
+                    <input id="btnSalvaSemConta" type="button" class="btn btn-success col-md-2 offset-9" value="Salvar" />
+
+                </div>
+
+                
 
             </form>
 
+
         </div>
 
+
+
         <!--CONTA FÍSICA-->
-        <div id="frmContaFisica" class="form-group frms">
-            <form>
+        <div id="frmContaFisica" class="form-group frms ">
                 <div class="row">
-                    <div class="col">
+                        <table id="tabFisica" class="table table-active table-bordered centraliza">
+        
+                        </table>
+                    </div>
+            <form>
+                <div class="form-row">
+                    <div class="form-group col">
                         <h3>Informações Pessoais</h3>
                         <br>
                         <div class="form-group">
@@ -89,17 +110,17 @@
                         </div>
 
                         <div class="form-row">
-                            <div class="form-group col-md-6">
+                            <div class="form-group col">
                                 <label for="txtNomeFisica">Nome:</label>
                                 <input type="text" id="txtNomeFisica" class="form-control" />
                             </div>
-                            <div class="form-group col-md-6">
+                            <div class="form-group col">
                                 <label for="txtFoneFisica">Telefone:</label>
                                 <input type="text" id="txtFoneFisica" class="form-control txtFone" />
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-row">
                             <label for="txtEnderecoFisica">Endereço:</label>
                             <input type="text" id="txtEnderecoFisica" class="form-control" />
                         </div>
@@ -109,14 +130,17 @@
 
                     </div>
                 </div>
+                <div class="row">
+                    <input id="btnSalvaFis" type="button" class="btn btn-success col-md-2 offset-9" value="Salvar" />
+                </div>
             </form>
         </div>
 
         <!--CONTA JURÍDICA-->
-        <div id="frmContaJuridica" class="form-group frms">
+        <div id="frmContaJuridica" class="form-group frms ">
             <form>
-                <div class="row">
-                    <div class="col">
+                <div class="form-row">
+                    <div class="form-group col">
                         <h3>Informações Jurídicas</h3>
                         <br>
                         <div class="form-group">
@@ -130,25 +154,28 @@
                         </div>
 
                         <div class="form-row">
-                            <div class="form-group col-md-6">
+                            <div class="form-group col">
                                 <label for="txtNomeJuridica">Nome:</label>
                                 <input type="text" id="txtNomeJuridica" class="form-control" />
                             </div>
-                            <div class="form-group col-md-6">
+                            <div class="form-group col">
                                 <label for="txtFoneJuridica">Telefone:</label>
                                 <input type="text" id="txtFoneJuridica" class="form-control txtFone" />
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-row">
                             <label for="txtEnderecoJuridica">Endereço:</label>
                             <input type="text" id="txtEnderecoJuridica" class="form-control" />
                         </div>
                     </div>
 
-                    <div id="frmLim" class="col">
+                    <div id="frmLim" class="form-group col ajuste">
 
                     </div>
+                </div>
+                <div class="row">
+                    <input id="btnSalvaJur" type="button" class="btn btn-success col-md-2 offset-9" value="Salvar" />
                 </div>
             </form>
         </div>

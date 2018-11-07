@@ -1,13 +1,22 @@
+var lSemConta = new Array();
+var lJuridica = new Array();
+var lFisica = new Array();
+var control = 0,
+    altId = -1;
+
 //Definição dos JS
 //$(this).hide() - elemento corrente
 //$("p").hide() - todos os <p>
 //$(".test").hide() - classe igual a teste
 //$("#test").hide() - id igual a teste
 
+
 $(document).ready(function () {
     $("#frmSemConta").hide();
     $("#frmContaFisica").hide();
     $("#frmContaJuridica").hide();
+    $("#tabSemConta").hide();
+
     LoadMask();
 
     $("#selCliente").change(function (e) {
@@ -39,6 +48,26 @@ $(document).ready(function () {
 
     });
 
+
+    //-------------------------------------SEM CONTA --------------------------------------//
+
+    $("#btnSalvaSemConta").click(function (e) {
+        var nome, tel, cpf, obs;
+        nome = $("#txtNomeSemConta").val();
+        tel = $("#txtFoneSemConta").val();
+        cpf = $("#txtCpfSemConta").val();
+        obs = $("#txtObservacoes").val();
+
+        if (nome != "" && tel != "" && cpf != "") {
+            SalvaSemConta(nome, tel, cpf, obs);
+            LimpaCamposSemConta();
+            $("#tabSemConta").show();
+        } else {
+            return alert("Preencha todos os campos para salvar!");
+        }
+
+    });
+
     //------------------------------------FISICA-------------------------------------------//
     $("#selDep").change(function (e) {
         switch ($(this).val()) {
@@ -56,9 +85,25 @@ $(document).ready(function () {
                 LoadFrmDep();
                 break;
         }
-
     });
 
+    $("#btnSalvaFis").click(function (e) {
+        var nome, tel, cpf, obs;
+        nome = $("#txtNomeFisica").val();
+        tel = $("#txtFoneFisica").val();
+        cpf = $("#txtCpfFisica").val();
+        obs = $("#txtObservacoes").val();
+
+        if (nome != "" && tel != "" && cpf != "") {
+            SalvaFisica(nome, tel, cpf, obs);
+            LimpaCamposFisica();
+            $("#tabFisica").show();
+        } else {
+            return alert("Preencha todos os campos para salvar!");
+        }
+
+    });
+    
     //-------------------------------------JURIDICA----------------------------------------//
     $("#selLim").change(function (e) {
         switch ($(this).val()) {
@@ -79,8 +124,103 @@ $(document).ready(function () {
 
     });
 });
+//------------------------------------SEM CONTA----------------------------------------//
+function SalvaSemConta(nome, tel, cpf, obs) {
+    if (altId == -1) {
+        var obj = new Object();
+        control++
 
+        obj.id = control;
+        obj.nome = nome;
+        obj.tel = tel;
+        obj.cpf = cpf;
+        obj.obs = obs;
+
+        lSemConta.push(obj);
+    } else {
+        lSemConta.forEach(el => {
+            if (el.id == altId) {
+                el.id = altId;
+                el.nome = nome;
+                el.tel = tel;
+                el.cpf = cpf;
+                el.obs = obs;
+
+                altId = -1;
+            }
+        });
+    }
+
+    CarTabSemConta();
+}
+
+function CarTabSemConta() {
+    var tab = $("#tabSemConta");
+    tab.html("");
+    tab.append(
+        "<thead><tr><th>NOME</th><th>CPF</th><th>TELEFONE</th><th>AÇÕES</th></tr></thead>"
+    );
+
+    lSemConta.forEach(el => {
+        tab.append(
+            "<tr id='" + el.id + "' >" +
+            "<td>" + el.nome + "</td>" +
+            "<td>" + el.cpf + "</td>" +
+            "<td>" + el.tel + "</td>" +
+            "<td> <input type ='button' onclick='EditSemConta(" + el.id + ")' value='Editar' class = 'btn btn-warning margin-rigth'  >" +
+            "<input type ='button' onclick ='DelSemConta(" + el.id + ")' value ='Excluir' class = 'btn btn-danger'></input> </td>"
+        );
+    });
+}
+
+
+
+function EditSemConta(id) {
+    lSemConta.forEach(el => {
+        if (el.id == id) {
+            $("#txtNomeSemConta").val(el.nome);
+            $("#txtFoneSemConta").val(el.tel);
+            $("#txtCpfSemConta").val(el.cpf);
+            $("#txtObservacoes").val(el.obs);
+            altId = el.id;
+            LoadMask();
+        }
+    });
+}
+
+
+function DelSemConta(id) {
+    var newList = new Array();
+
+    lSemConta.forEach(el => {
+        if (el.id != id)
+            newList.push(el);
+    })
+
+    lSemConta = newList;
+    CarTabSemConta();
+}
+
+function LimpaCamposSemConta() {
+    $("#txtNomeSemConta").val("");
+    $("#txtFoneSemConta").val("");
+    $("#txtCpfSemConta").val("");
+    $("#txtObservacoes").val("");
+}
 //------------------------------------FISICA-------------------------------------------//
+
+function SalvaFisica() {
+
+}
+
+function DelFisica(id) {  
+
+}
+
+function EditFisica(id){
+
+}
+
 function LoadFrmRef() {
     var formRef = $("#frmDep");
     formRef.html("");
@@ -119,6 +259,21 @@ function LoadFrmDep() {
     LoadMask();
 }
 
+function LimpaCamposFisica() {
+    $("#txtNomeFisica").val("");
+    $("#txtFoneFisica").val("");
+    $("#txtCpfFisica").val("");
+
+    $("#txtNomeDep").val("");
+    $("#txtFoneDep").val("");
+    $("#txtCpfDep").val("");
+
+    $("#txtNomeRef").val("");
+    $("#txtFoneRef").val("");
+    $("#selDep").val();
+}
+
+
 //-------------------------------------JURIDICA----------------------------------------//
 
 function LoadFrmInf() {
@@ -139,30 +294,32 @@ function LoadFrmIgualSup() {
     formLim.html("");
 
     formLim.append(
+
         "<h3>Informações Limite</h3></br>" +
 
         "<div class='form-row'>" +
-        "<div class='form-group col-md-6'><label for='txtNomeRef'>Referência Pessoal:</label>" +
-        "<input type='text' id='txtNomeRef' class='form-control txtCpf'/></div>" +
-        "<div class='form-group col-md-6'><label for='txtFoneRef'>Telefone Referência:</label>" +
-        "<input type='text' id='txtFoneRef' class='form-control txtFone'/></div>" +
-
-        "<div class='form-group col-md-12'> <label>Banco:</label><br>" +
-        "<select id='selBanco' class='form-control'>" +
-        " <option value='itau'>Itau</option>" +
-        " <option value='bradesco'>Bradesco</option></select></div>" +    
+        "<div class='form-group col-md-6'><label for='txtNomeLim'>Referência Pessoal:</label>" +
+        "<input type='text' id='txtNomeLim' class='form-control txtCpf'/></div>" +
+        "<div class='form-group col-md-6'><label for='txtFoneLim'>Telefone Referência:</label>" +
+        "<input type='text' id='txtFoneLim' class='form-control txtFone'/></div>" +
 
         "<div class='form-row'>" +
-        "<div class='form-group col-md-6'><label for='txtAgenciaRef'>Agência:</label>" +
-        "<input type='text' id='txtAgenciaRef' class='form-control'/></div>" +
-        "<div class='form-group col-md-6'><label for='txtContaRef'>Conta:</label>" +
-        "<input type='text' id='txtContaRef' class='form-control'/></div>" 
+        "<div class='form-group col-md-6'><label for='txtAgencia'>Agência:</label>" +
+        "<input type='text' id='txtAgencia' class='form-control txtAgencia'/></div>" +
+        "<div class='form-group col-md-6'><label for='txtConta'>Telefone Conta:</label>" +
+        "<input type='text' id='txtConta' class='form-control txtConta'/></div>" +
+
+        "<div class='form-group col'><label>Banco:</label></br>" +
+        "<select id='selBanco' class='form-control'>" +
+        "<option value='itau'>Itau</option>" +
+        "<option value='bradesco'>Bradesco</option></select></div></div>"
     );
 
     LoadMask();
 }
 
 //------------------------------------UTILS--------------------------------//
+
 function LoadMask() {
     $(".txtFone").mask('(00) Z 0000-0000', {
         translation: {
@@ -181,4 +338,11 @@ function LoadMask() {
         reverse: true
     });
 
+    $(".txtAgencia").mask("0000-0", {
+        reverse: true
+    });
+
+    $(".txtConta").mask("00.000-0", {
+        reverse: true
+    });
 }
