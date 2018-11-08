@@ -18,6 +18,8 @@ $(document).ready(function () {
     $("#tabSemConta").hide();
     $("#tabRef").hide();
     $("#taDep").hide();
+    $("#tabInf").hide();
+    $("#tabIgualSup").hide();
 
     LoadMask();
 
@@ -49,7 +51,6 @@ $(document).ready(function () {
         }
 
     });
-
 
     //-------------------------------------SEM CONTA --------------------------------------//
 
@@ -131,11 +132,6 @@ $(document).ready(function () {
         } else {
             return alert("Preencha todos os campos para salvar!");
         }
-
-
-
-
-
     });
 
     //-------------------------------------JURIDICA----------------------------------------//
@@ -155,9 +151,55 @@ $(document).ready(function () {
                 LoadFrmIgualSup();
                 break;
         }
+    });
 
+
+    $("#btnSalvaJur").click(function (e) {
+        var nome, tel, end, valor, nomeRef, telRef, agen, acc, sel, selBnc;
+        nome = $("#txtNomeJuridica").val();
+        tel = $("#txtFoneJuridica").val();
+        end = $("#txtEnderecoJuridica").val();
+        sel = $("#selLim").val();
+
+        console.log(sel);
+
+        if (nome != "" && tel != "" && end != "" && sel != "vazio") {
+
+            if (sel == "inferior") {
+
+                valor = $("#txtValorLim").val();
+
+                if (parseFloat(valor) < 100.00) {
+                    SalvaJuridica(nome, tel, end, valor, nomeRef, telRef, agen, acc, sel, selBnc);
+                    $("#tabInf").show();
+
+                } else {
+                    return alert("O valor deve ser menor que cem!");
+                }
+
+            } else {
+
+                nomeRef = $("#txtNomeLim").val();
+                telRef = $("#txtFoneLim").val();
+                agen = $("#txtAgencia").val();
+                acc = $("#txtConta").val();
+                selBnc = $("#selBanco").val();
+
+                if (nomeRef != "" && telRef != "" && agen != "" && acc != "") {
+                    SalvaJuridica(nome, tel, end, valor, nomeRef, telRef, agen, acc, sel, selBnc);
+                    $("#tabIgualSup").show();
+
+                } else {
+                    return alert("Preencha todos os campos para salvar!");
+                }
+            }
+            LimpaCamposJuridica();
+        } else {
+            return alert("Preencha todos os campos para salvar!");
+        }
     });
 });
+
 //------------------------------------SEM CONTA----------------------------------------//
 function SalvaSemConta(nome, tel, cpf, obs) {
     if (altId == -1) {
@@ -232,6 +274,7 @@ function DelSemConta(id) {
     })
 
     lSemConta = newList;
+    CarTabSemConta();
 }
 
 function LimpaCamposSemConta() {
@@ -353,13 +396,7 @@ function EditFisica(id) {
             }
         }
     });
-
-
-
-
 }
-
-
 
 function CarTabFisicaDep() {
     var tab = $("#tabRef");
@@ -371,7 +408,7 @@ function CarTabFisicaDep() {
     );
 
     lFisica.forEach(el => {
-        if(el.sel =="sim"){
+        if (el.sel == "sim") {
             tab.append(
                 "<tr id='" + el.id + "' >" +
                 "<td>" + el.nome + "</td>" +
@@ -384,7 +421,7 @@ function CarTabFisicaDep() {
                 "<input type ='button' onclick ='DelFisica(" + el.id + ")' value ='Excluir' class = 'btn btn-danger'></input> </td>"
             );
         }
-        
+
     });
 }
 
@@ -396,9 +433,9 @@ function CarTabFisicaRef() {
         "<thead><tr><th>NOME</th><th>TELEFONE</th><th>ENDERECO</th>" +
         "<th>NOME REF</th><th>TELEFONE REF</th><th>AÇÕES</th></tr></thead>"
     );
-    
+
     lFisica.forEach(el => {
-        if(el.sel =="nao"){
+        if (el.sel == "nao") {
             tab.append(
                 "<tr id='" + el.id + "' >" +
                 "<td>" + el.nome + "</td>" +
@@ -409,7 +446,7 @@ function CarTabFisicaRef() {
                 "<td> <input type ='button' onclick='EditFisica(" + el.id + ")' value='Editar' class = 'btn btn-warning margin-rigth'  >" +
                 "<input type ='button' onclick ='DelFisica(" + el.id + ")' value ='Excluir' class = 'btn btn-danger'></input> </td>"
             );
-        }        
+        }
     });
 }
 
@@ -467,12 +504,193 @@ function LimpaCamposFisica() {
 
 
 //-------------------------------------JURIDICA----------------------------------------//
-function LimpaCamposJuridica(){}
-function SalvaJuridica(){}
-function EditJuridica(){}
-function DelJuridica(){}
-function CarTabLimInf(){}
-function CarTabLimIgualSup(){}
+function LimpaCamposJuridica() {
+    $("#selLim").val("vazio");
+    $("#txtNomeJuridica").val("");
+    $("#txtFoneJuridica").val("");
+    $("#txtEnderecoJuridica").val("");
+
+    $("#txtValorLim").val("");
+
+    $("#txtNomeLim").val("");
+    $("#txtFoneLim").val("");
+    $("#txtAgencia").val("");
+    $("#txtConta").val("");
+    $("#selBanco").val("itau");
+}
+
+function CarTabLimInf() {
+    var tab = $("#tabInf");
+    tab.html("");
+
+    tab.append(
+        "<thead><tr><th>NOME</th><th>TELEFONE</th><th>ENDERECO</th>" +
+        "<th>VALOR</th></tr></thead>"
+    );
+
+    lJuridica.forEach(el => {
+        if (el.sel == "inferior") {
+            tab.append(
+                "<tr id='" + el.id + "' >" +
+                "<td>" + el.nome + "</td>" +
+                "<td>" + el.tel + "</td>" +
+                "<td>" + el.end + "</td>" +
+                "<td>" + el.valor + "</td>" +
+                "<td> <input type ='button' onclick='EditJuridica(" + el.id + ")' value='Editar' class = 'btn btn-warning margin-rigth'  >" +
+                "<input type ='button' onclick ='DelJuridica(" + el.id + ")' value ='Excluir' class = 'btn btn-danger'></input> </td>"
+            );
+        }
+    });
+}
+
+
+function CarTabLimIgualSup() {
+    var tab = $("#tabIgualSup");
+    tab.html("");
+
+    tab.append(
+        "<thead><tr><th>NOME</th><th>TELEFONE</th><th>ENDERECO</th>" +
+        "<th>NOME REF</th><th>TEL REF</th><th>BANCO</th><th>AGÊNCIA</th><th>CONTA</th></tr></thead>"
+    );
+
+    lJuridica.forEach(el => {
+        if (el.sel == "igualSuperior") {
+            tab.append(
+                "<tr id='" + el.id + "' >" +
+                "<td>" + el.nome + "</td>" +
+                "<td>" + el.tel + "</td>" +
+                "<td>" + el.end + "</td>" +
+                "<td>" + el.nomeRef + "</td>" +
+                "<td>" + el.telRef + "</td>" +
+                "<td>" + el.selBnc + "</td>" +
+                "<td>" + el.agen + "</td>" +
+                "<td>" + el.acc + "</td>" +
+
+                "<td> <input type ='button' onclick='EditJuridica(" + el.id + ")' value='Editar' class = 'btn btn-warning margin-rigth'  >" +
+                "<input type ='button' onclick ='DelJuridica(" + el.id + ")' value ='Excluir' class = 'btn btn-danger'></input> </td>"
+            );
+        }
+    });
+}
+
+
+
+function SalvaJuridica(nome, tel, end, valor, nomeRef, telRef, agen, acc, sel, selBnc) {
+    if (sel == "inferior") {
+        if (altId == -1) {
+            var obj = new Object();
+            control++
+
+            obj.id = control;
+            obj.nome = nome;
+            obj.tel = tel;
+            obj.end = end;
+            obj.sel = sel;
+            obj.valor = valor;
+
+            lJuridica.push(obj);
+        } else {
+            lJuridica.forEach(el => {
+                if (el.id == altId) {
+                    el.id = altId;
+                    el.nome = nome;
+                    el.tel = tel;
+                    el.end = end;
+                    el.sel = sel;
+                    el.valor = valor;
+                    el.sel = sel;
+
+                    altId = -1;
+                }
+            });
+        }
+    } else {
+        if (altId == -1) {
+            var obj = new Object();
+            control++
+
+            obj.id = control;
+            obj.nome = nome;
+            obj.tel = tel;
+            obj.end = end;
+            obj.nomeRef = nomeRef;
+            obj.telRef = telRef;
+            obj.agen = agen;
+            obj.acc = acc;
+            obj.selBnc = selBnc;
+            obj.sel = sel;
+
+
+            lJuridica.push(obj);
+        } else {
+            lJuridica.forEach(el => {
+                if (el.id == altId) {
+                    el.id = altId;
+                    el.nome = nome;
+                    el.tel = tel;
+                    el.end = end;
+                    el.nomeRef = nomeRef;
+                    el.telRef = telRef;
+                    el.agen = agen;
+                    el.acc = acc;
+                    el.selBnc = selBnc;
+                    el.sel = sel;
+
+                    altId = -1;
+                }
+            });
+        }
+    }
+    CarTabLimInf();
+    CarTabLimIgualSup();
+}
+
+function EditJuridica(id) {
+    LoadMask();
+
+    lJuridica.forEach(el => {
+        if (el.id == id) {
+            altId = el.id;
+            if (el.sel == "inferior") {
+                $("#txtNomeJuridica").val(el.nome);
+                $("#txtFoneJuridica").val(el.tel);
+                $("#txtEnderecoJuridica").val(el.end);
+                $("#selLim").val(el.sel);
+
+                $("#txtValorLim").val(el.valor);
+
+            } else {
+                $("#txtNomeJuridica").val(el.nome);
+                $("#txtFoneJuridica").val(el.tel);
+                $("#txtEnderecoJuridica").val(el.end);
+                $("#selLim").val(el.sel);
+
+                $("#txtNomeLim").val(el.nomeRef);
+                $("#txtFoneLim").val(el.telRef);
+                $("#selBanco").val(el.selBnc);
+                $("#txtAgencia").val(el.agen);
+                $("#txtConta").val(el.acc);
+
+            }
+        }
+    });
+
+}
+
+function DelJuridica(id) {
+    var newList = new Array();
+
+    lJuridica.forEach(el => {
+        if (el.id != id)
+            newList.push(el);
+    })
+
+    lJuridica = newList;
+
+    CarTabLimInf();
+    CarTabLimIgualSup();
+
+}
 
 function LoadFrmInf() {
     var formLim = $("#frmLim");
@@ -497,20 +715,22 @@ function LoadFrmIgualSup() {
 
         "<div class='form-row'>" +
         "<div class='form-group col-md-6'><label for='txtNomeLim'>Referência Pessoal:</label>" +
-        "<input type='text' id='txtNomeLim' class='form-control txtCpf'/></div>" +
+        "<input type='text' id='txtNomeLim' class='form-control'/></div>" +
         "<div class='form-group col-md-6'><label for='txtFoneLim'>Telefone Referência:</label>" +
         "<input type='text' id='txtFoneLim' class='form-control txtFone'/></div>" +
-
-        "<div class='form-row'>" +
-        "<div class='form-group col-md-6'><label for='txtAgencia'>Agência:</label>" +
-        "<input type='text' id='txtAgencia' class='form-control txtAgencia'/></div>" +
-        "<div class='form-group col-md-6'><label for='txtConta'>Telefone Conta:</label>" +
-        "<input type='text' id='txtConta' class='form-control txtConta'/></div>" +
 
         "<div class='form-group col'><label>Banco:</label></br>" +
         "<select id='selBanco' class='form-control'>" +
         "<option value='itau'>Itau</option>" +
-        "<option value='bradesco'>Bradesco</option></select></div></div>"
+        "<option value='bradesco'>Bradesco</option></select></div></div>" +
+        "<div class='form-row'>" +
+
+        "<div class='form-group col-md-6'><label for='txtAgencia'>Agência:</label>" +
+        "<input type='text' id='txtAgencia' class='form-control txtAgencia'/></div>" +
+        "<div class='form-group col-md-6'><label for='txtConta'>Telefone Conta:</label>" +
+        "<input type='text' id='txtConta' class='form-control txtConta'/></div>"
+
+
     );
 
     LoadMask();

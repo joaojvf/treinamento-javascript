@@ -1,29 +1,29 @@
-.frms{
+.frms {
     margin-top: 10%;
     background: rgb(217, 230, 238);
     padding: 20px;
-    border: solid 2px  rgb(0, 140, 255);;
+    border: solid 2px rgb(0, 140, 255);
+    ;
     border-radius: 5px;
 }
 
-.ajuste{
+.ajuste {
     margin-left: 2%;
     float: right;
 }
 
-.centraliza{
+.centraliza {
     margin-top: 1%;
     margin-bottom: 1%;
     text-align: center;
     border-radius: 10px;
 }
 
-.margin-rigth{
+.margin-rigth {
     margin-right: 2%;
     margin-bottom: 2%;
 }
 
-.display-none{
+.display-none {
     display: none;
 }
-
