@@ -16,6 +16,8 @@ $(document).ready(function () {
     $("#frmContaFisica").hide();
     $("#frmContaJuridica").hide();
     $("#tabSemConta").hide();
+    $("#tabRef").hide();
+    $("#taDep").hide();
 
     LoadMask();
 
@@ -88,22 +90,54 @@ $(document).ready(function () {
     });
 
     $("#btnSalvaFis").click(function (e) {
-        var nome, tel, cpf, obs;
+        var nome, tel, end, nomeRef, telRef, nomeDep, telDep, cpfDep;
         nome = $("#txtNomeFisica").val();
         tel = $("#txtFoneFisica").val();
-        cpf = $("#txtCpfFisica").val();
-        obs = $("#txtObservacoes").val();
+        end = $("#txtEnderecoFisica").val();
+        sel = $("#selDep").val();
 
-        if (nome != "" && tel != "" && cpf != "") {
-            SalvaFisica(nome, tel, cpf, obs);
+        console.log(sel);
+
+        if (nome != "" && tel != "" && end != "" && sel != "vazio") {
+
+            if (sel == "nao") {
+
+                nomeRef = $("#txtNomeRef").val();
+                telRef = $("#txtFoneRef").val();
+
+                if (nomeRef != "" && telRef != "") {
+                    SalvaFisica(nome, tel, end, sel, nomeRef, telRef, nomeDep, telDep, cpfDep);
+                    $("#tabRef").show();
+
+                } else {
+                    return alert("Preencha todos os campos para salvar!");
+                }
+
+
+            } else {
+                nomeDep = $("#txtNomeDep").val();
+                telDep = $("#txtFoneDep").val();
+                cpfDep = $("#txtCpfDep").val();
+
+                if (nomeDep != "" && telDep != "" && cpfDep != "") {
+                    SalvaFisica(nome, tel, end, sel, nomeRef, telRef, nomeDep, telDep, cpfDep);
+                    $("#tabDep").show();
+
+                } else {
+                    return alert("Preencha todos os campos para salvar!");
+                }
+            }
             LimpaCamposFisica();
-            $("#tabFisica").show();
         } else {
             return alert("Preencha todos os campos para salvar!");
         }
 
+
+
+
+
     });
-    
+
     //-------------------------------------JURIDICA----------------------------------------//
     $("#selLim").change(function (e) {
         switch ($(this).val()) {
@@ -198,7 +232,6 @@ function DelSemConta(id) {
     })
 
     lSemConta = newList;
-    CarTabSemConta();
 }
 
 function LimpaCamposSemConta() {
@@ -209,16 +242,175 @@ function LimpaCamposSemConta() {
 }
 //------------------------------------FISICA-------------------------------------------//
 
-function SalvaFisica() {
+function SalvaFisica(nome, tel, end, sel, nomeRef, telRef, nomeDep, telDep, cpfDep) {
+    if (sel == "nao") {
+        if (altId == -1) {
+            var obj = new Object();
+            control++
+
+            obj.id = control;
+            obj.nome = nome;
+            obj.tel = tel;
+            obj.end = end;
+            obj.nomeRef = nomeRef;
+            obj.telRef = telRef;
+            obj.sel = sel;
+
+            lFisica.push(obj);
+        } else {
+            lFisica.forEach(el => {
+                if (el.id == altId) {
+                    el.id = altId;
+                    el.nome = nome;
+                    el.tel = tel;
+                    el.end = end;
+                    el.nomeDep = nomeDep;
+                    el.telDep = telDep;
+                    el.cpfDep = cpfDep;
+                    el.sel = sel;
+
+                    altId = -1;
+                }
+            });
+        }
+    } else {
+        if (altId == -1) {
+            var obj = new Object();
+            control++
+
+            obj.id = control;
+            obj.nome = nome;
+            obj.tel = tel;
+            obj.end = end;
+            obj.nomeDep = nomeDep;
+            obj.telDep = telDep;
+            obj.cpfDep = cpfDep;
+            obj.sel = sel;
+
+
+            lFisica.push(obj);
+        } else {
+            lFisica.forEach(el => {
+                if (el.id == altId) {
+                    el.id = altId;
+                    el.nome = nome;
+                    el.tel = tel;
+                    el.end = end;
+                    el.nomeDep = nomeDep;
+                    el.telDep = telDep;
+                    el.cpfDep = cpfDep;
+                    el.sel = sel;
+
+                    altId = -1;
+                }
+            });
+        }
+    }
+    CarTabFisicaRef();
+    CarTabFisicaDep();
+}
+
+function DelFisica(id) {
+    var newList = new Array();
+
+    lFisica.forEach(el => {
+        if (el.id != id)
+            newList.push(el);
+    })
+
+    lFisica = newList;
+
+    CarTabFisicaRef();
+    CarTabFisicaDep();
+}
+
+function EditFisica(id) {
+    LoadMask();
+
+    lFisica.forEach(el => {
+        if (el.id == id) {
+            altId = el.id;
+            if (el.sel == "nao") {
+                $("#txtNomeFisica").val(el.nome);
+                $("#txtFoneFisica").val(el.tel);
+                $("#txtEnderecoFisica").val(el.end);
+
+                $("#txtNomeRef").val(el.nomeRef);
+                $("#txtFoneRef").val(el.telRef);
+                $("#selDep").val(el.sel);
+
+
+            } else {
+                $("#txtNomeFisica").val(el.nome);
+                $("#txtFoneFisica").val(el.tel);
+                $("#txtEnderecoFisica").val(el.end);
+
+                $("#txtNomeDep").val(el.nomeDep);
+                $("#txtFoneDep").val(el.telDep);
+                $("#txtCpfDep").val(el.cpfDep);
+                $("#selDep").val(el.sel);
+
+            }
+        }
+    });
+
+
+
 
 }
 
-function DelFisica(id) {  
 
+
+function CarTabFisicaDep() {
+    var tab = $("#tabRef");
+    tab.html("");
+
+    tab.append(
+        "<thead><tr><th>NOME</th><th>TELEFONE</th><th>ENDERECO</th>" +
+        "<th>NOME DEP</th><th>TELEFONE DEP</th><th>CPF DEP</th><th>AÇÕES</th></tr></thead>"
+    );
+
+    lFisica.forEach(el => {
+        if(el.sel =="sim"){
+            tab.append(
+                "<tr id='" + el.id + "' >" +
+                "<td>" + el.nome + "</td>" +
+                "<td>" + el.tel + "</td>" +
+                "<td>" + el.end + "</td>" +
+                "<td>" + el.nomeDep + "</td>" +
+                "<td>" + el.telDep + "</td>" +
+                "<td>" + el.cpfDep + "</td>" +
+                "<td> <input type ='button' onclick='EditFisica(" + el.id + ")' value='Editar' class = 'btn btn-warning margin-rigth'  >" +
+                "<input type ='button' onclick ='DelFisica(" + el.id + ")' value ='Excluir' class = 'btn btn-danger'></input> </td>"
+            );
+        }
+        
+    });
 }
 
-function EditFisica(id){
+function CarTabFisicaRef() {
+    var tab = $("#tabDep");
+    tab.html("");
 
+    tab.append(
+        "<thead><tr><th>NOME</th><th>TELEFONE</th><th>ENDERECO</th>" +
+        "<th>NOME REF</th><th>TELEFONE REF</th><th>AÇÕES</th></tr></thead>"
+    );
+    
+    lFisica.forEach(el => {
+        if(el.sel =="nao"){
+            tab.append(
+                "<tr id='" + el.id + "' >" +
+                "<td>" + el.nome + "</td>" +
+                "<td>" + el.tel + "</td>" +
+                "<td>" + el.end + "</td>" +
+                "<td>" + el.nomeRef + "</td>" +
+                "<td>" + el.telRef + "</td>" +
+                "<td> <input type ='button' onclick='EditFisica(" + el.id + ")' value='Editar' class = 'btn btn-warning margin-rigth'  >" +
+                "<input type ='button' onclick ='DelFisica(" + el.id + ")' value ='Excluir' class = 'btn btn-danger'></input> </td>"
+            );
+        }        
+    });
 }
 
 function LoadFrmRef() {
@@ -262,7 +454,7 @@ function LoadFrmDep() {
 function LimpaCamposFisica() {
     $("#txtNomeFisica").val("");
     $("#txtFoneFisica").val("");
-    $("#txtCpfFisica").val("");
+    $("#txtEnderecoFisica").val("");
 
     $("#txtNomeDep").val("");
     $("#txtFoneDep").val("");
@@ -270,11 +462,17 @@ function LimpaCamposFisica() {
 
     $("#txtNomeRef").val("");
     $("#txtFoneRef").val("");
-    $("#selDep").val();
+    $("#selDep").val("vazio");
 }
 
 
 //-------------------------------------JURIDICA----------------------------------------//
+function LimpaCamposJuridica(){}
+function SalvaJuridica(){}
+function EditJuridica(){}
+function DelJuridica(){}
+function CarTabLimInf(){}
+function CarTabLimIgualSup(){}
 
 function LoadFrmInf() {
     var formLim = $("#frmLim");
