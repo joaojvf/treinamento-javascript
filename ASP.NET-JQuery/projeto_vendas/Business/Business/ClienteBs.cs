@@ -17,6 +17,10 @@ namespace Business.Business
             return cliente.ListarClientes();
         }
 
+        public Cliente BuscarPorId(int id)
+        {
+            return cliente.BuscarPorId(id);
+        }
         public Cliente Inserir(Cliente c)
         {
             return cliente.Inserir(c);

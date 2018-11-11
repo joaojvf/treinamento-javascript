@@ -1,5 +1,6 @@
 ﻿using Business.Business;
 using Objects.Objetos;
+
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -10,31 +11,31 @@ using System.Web.UI.WebControls;
 
 namespace Views.Views
 {
-    public partial class VwCliente : System.Web.UI.Page
+    public partial class VwFornecedor : System.Web.UI.Page
     {
-        ClienteBs cliBs = new ClienteBs();
+        FornecedorBs forBs = new FornecedorBs();
 
         protected void Page_Load(object sender, EventArgs e)
         {
             PopularGrid();
         }
 
-        protected void btnCadastrarCliente_Click(object sender, EventArgs e)
+        protected void btnCadastrarFornecedor_Click(object sender, EventArgs e)
         {
-            Cliente cliente = new Cliente()
+            Fornecedor fornecedor = new Fornecedor()
             {
                 Nome = txtNome.Text,
-                Cpf = txtCpf.Text,
+                NomeEmpresa = txtEmpresa.Text,
                 Telefone = txtTelefone.Text,
-                Email =  txtEmail.Text
             };
 
-            cliBs.Inserir(cliente);
+            forBs.Inserir(fornecedor);
+
             PopularGrid();
 
         }
 
-        protected void gdvCliente_RowCommand(object sender, GridViewCommandEventArgs e)
+        protected void gdvFornecedor_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             try
             {
@@ -42,17 +43,9 @@ namespace Views.Views
                 {
                     int id = int.Parse((string)e.CommandArgument); // pega o ID o datakey name da linha clicada
 
-                    cliBs.Remover(id);
+                    forBs.Remover(id);
                     PopularGrid();
 
-                }
-
-                if (e.CommandName.Equals("Abrir"))
-                {
-                    int id = int.Parse((string)e.CommandArgument);
-                    Cliente cliente = cliBs.BuscarPorId(id);
-                    Session["cliente"] = cliente;
-                    Response.Redirect("~/Views/VwVendaPorCliente.aspx");
                 }
             }
             catch (Exception ee)
@@ -63,10 +56,10 @@ namespace Views.Views
 
         public void PopularGrid()
         {
-            DataTable dTable = cliBs.Listar();
+            DataTable dTable = forBs.ListarGrid();
 
-            gdvCliente.DataSource = dTable;
-            gdvCliente.DataBind();
+            gdvFornecedor.DataSource = dTable;
+            gdvFornecedor.DataBind();
         }
     }
 }

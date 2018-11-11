@@ -105,5 +105,41 @@ namespace Dao
             }
         }
 
+        public Cliente BuscarPorId(int id)
+        {
+            try
+            {
+                MySqlCommand command = Connection.Instance.CreateCommand();
+
+                string sql = "SELECT * FROM cliente WHERE id = @id";
+                command.CommandText = sql;
+                command.Parameters.AddWithValue("@id", id);
+
+                var reader = command.ExecuteReader();
+                Cliente c = null;
+                while (reader.Read())
+                {
+                    c = new Cliente()
+                    {
+                        Id = int.Parse(reader["id"].ToString()),
+                        Nome = reader["nome_cliente"].ToString(),
+                        Cpf = reader["cpf_cliente"].ToString(),
+                        Telefone = reader["telefone_cliente"].ToString(),
+                        Email = reader["email_cliente"].ToString()
+                    };
+                }
+
+                reader.Close();
+
+                return c;
+
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+
+
     }
 }

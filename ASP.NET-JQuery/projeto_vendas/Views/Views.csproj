@@ -76,6 +76,9 @@
     <Content Include="Scripts\script.js" />
     <Content Include="Views\script.js" />
     <Content Include="Views\VwCliente.aspx" />
+    <Content Include="Views\VwFornecedor.aspx" />
+    <Content Include="Views\VwProduto.aspx" />
+    <Content Include="Views\VwVendaPorCliente.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -96,6 +99,27 @@
     </Compile>
     <Compile Include="Views\VwCliente.aspx.designer.cs">
       <DependentUpon>VwCliente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\VwFornecedor.aspx.cs">
+      <DependentUpon>VwFornecedor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\VwFornecedor.aspx.designer.cs">
+      <DependentUpon>VwFornecedor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\VwProduto.aspx.cs">
+      <DependentUpon>VwProduto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\VwProduto.aspx.designer.cs">
+      <DependentUpon>VwProduto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\VwVendaPorCliente.aspx.cs">
+      <DependentUpon>VwVendaPorCliente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\VwVendaPorCliente.aspx.designer.cs">
+      <DependentUpon>VwVendaPorCliente.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
