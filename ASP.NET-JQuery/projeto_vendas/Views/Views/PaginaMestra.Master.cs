@@ -13,5 +13,13 @@ namespace Views.Views
         {
 
         }
+        protected void ConsultarProdutos(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Views/VwProduto.aspx");
+        }
+        protected void ConsultarFornecedores(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Views/VwFornecedor.aspx");
+        }
     }
 }

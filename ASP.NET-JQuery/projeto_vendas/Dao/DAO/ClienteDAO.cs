@@ -65,7 +65,6 @@ namespace Dao
         {
             try
             {
-
                 MySqlCommand command = Connection.Instance.CreateCommand();
 
                 string sql = "DELETE FROM cliente WHERE id =@id";

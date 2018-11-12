@@ -28,6 +28,11 @@ namespace Business.Business
         {
             return produto.ListarGrid();
         }
+
+        public Produto BuscarPorId(int id)
+        {
+            return produto.BuscarPorId(id);
+        }
     }
 
    

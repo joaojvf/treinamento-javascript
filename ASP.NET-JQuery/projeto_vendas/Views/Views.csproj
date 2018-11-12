@@ -77,6 +77,7 @@
     <Content Include="Views\script.js" />
     <Content Include="Views\VwCliente.aspx" />
     <Content Include="Views\VwFornecedor.aspx" />
+    <Content Include="Views\VwItensPorVenda.aspx" />
     <Content Include="Views\VwProduto.aspx" />
     <Content Include="Views\VwVendaPorCliente.aspx" />
     <Content Include="Web.config" />
@@ -106,6 +107,13 @@
     </Compile>
     <Compile Include="Views\VwFornecedor.aspx.designer.cs">
       <DependentUpon>VwFornecedor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\VwItensPorVenda.aspx.cs">
+      <DependentUpon>VwItensPorVenda.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\VwItensPorVenda.aspx.designer.cs">
+      <DependentUpon>VwItensPorVenda.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\VwProduto.aspx.cs">
       <DependentUpon>VwProduto.aspx</DependentUpon>

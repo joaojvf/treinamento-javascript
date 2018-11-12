@@ -31,31 +31,22 @@ namespace Views.Views {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// Controle aMeusEmprestimos.
+        /// Controle lkbFornecedores.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton aMeusEmprestimos;
+        protected global::System.Web.UI.WebControls.LinkButton lkbFornecedores;
         
         /// <summary>
-        /// Controle aMeusInvestimentos.
+        /// Controle lkbProdutos.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton aMeusInvestimentos;
-        
-        /// <summary>
-        /// Controle lbEntrarSair.
-        /// </summary>
-        /// <remarks>
-        /// Campo gerado automaticamente.
-        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbEntrarSair;
+        protected global::System.Web.UI.WebControls.LinkButton lkbProdutos;
         
         /// <summary>
         /// Controle body.

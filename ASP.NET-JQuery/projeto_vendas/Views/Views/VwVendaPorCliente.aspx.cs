@@ -27,8 +27,11 @@ namespace Views.Views
             {
                 if (e.CommandName.Equals("Abrir"))
                 {
-                    //Session["cliente"] = venBs.BuscarPorId(int.Parse((string)e.CommandArgument));
-                    Response.Redirect("");
+                    int id = int.Parse((string)e.CommandArgument);
+                    Venda venda = venBs.BuscarPorId(id);
+                    Session["venda"] = venda;
+
+                    Response.Redirect("~/Views/VwItensPorVenda.aspx");
                 }
                 if (e.CommandName.Equals("FinalizarVenda"))
                 {

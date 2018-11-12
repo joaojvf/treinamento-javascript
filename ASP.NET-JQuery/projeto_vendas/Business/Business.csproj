@@ -73,6 +73,7 @@
   <ItemGroup>
     <Compile Include="Business\ClienteBs.cs" />
     <Compile Include="Business\FornecedorBs.cs" />
+    <Compile Include="Business\ItensBs.cs" />
     <Compile Include="Business\ProdutoBs.cs" />
     <Compile Include="Business\VendaBs.cs" />
     <Compile Include="Global.asax.cs">

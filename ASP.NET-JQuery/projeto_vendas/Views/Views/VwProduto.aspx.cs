@@ -75,7 +75,5 @@ namespace Views
             ddlFornecedor.DataBind();
 
         }
-
-
     }
 }

@@ -43,7 +43,6 @@ namespace Dao.DAO
         {
             try
             {
-
                 MySqlCommand command = Connection.Instance.CreateCommand();
 
                 string sql = "DELETE FROM produto WHERE id =@id";
@@ -56,8 +55,6 @@ namespace Dao.DAO
             {
                 return false;
             }
-
-
         }
 
         public DataTable ListarGrid()
@@ -76,6 +73,43 @@ namespace Dao.DAO
                 return null;
             }
 
+        }
+
+        public Produto BuscarPorId(int id)
+        {
+            try
+            {
+                MySqlCommand command = Connection.Instance.CreateCommand();
+
+                string sql = "SELECT * FROM produto WHERE id = @id";
+                command.CommandText = sql;
+                command.Parameters.AddWithValue("@id", id);
+
+                var reader = command.ExecuteReader();
+                Produto p = null;
+                while (reader.Read())
+                {
+                    p = new Produto()
+                    {
+                        Id = int.Parse(reader["id"].ToString()),
+                        Nome = reader["nome_produto"].ToString(),
+                        Valor = double.Parse(reader["valor_produto"].ToString()),
+                        
+                    };
+                }
+
+                int id_fornecedor = int.Parse(reader["id_fornecedor"].ToString());
+                reader.Close();
+
+                p.Fornecedor = new FornecedorDAO().BuscarPorId(id_fornecedor);
+
+                return p;
+
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
         }
     }
 }

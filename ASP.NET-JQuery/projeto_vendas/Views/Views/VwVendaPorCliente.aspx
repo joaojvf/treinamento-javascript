@@ -30,7 +30,7 @@
                 </asp:TemplateField>               
                 <asp:TemplateField>
                     <ItemTemplate>
-                        <asp:LinkButton ID="lkbAbrir" runat="server" Text="Abrir" CommandArgument='<%# Bind("id") %>' CommandName="Editar"></asp:LinkButton>
+                        <asp:LinkButton ID="lkbAbrir" runat="server" Text="Abrir" CommandArgument='<%# Bind("id") %>' CommandName="Abrir"></asp:LinkButton>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField>
