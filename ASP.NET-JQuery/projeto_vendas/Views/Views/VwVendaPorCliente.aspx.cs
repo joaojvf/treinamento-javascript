@@ -32,6 +32,14 @@ namespace Views.Views
                 }
                 if (e.CommandName.Equals("FinalizarVenda"))
                 {
+                    int id = int.Parse((string)e.CommandArgument);
+                    Venda venda = new Venda();
+                    venda = venBs.BuscarPorId(id);
+
+                    venda.DataVenda = DateTime.Now;
+
+                    venda = venBs.Editar(venda);
+                    PopularGrid();
                     // adiciona data atual para a venda clicada
                 }
             }
@@ -58,7 +66,7 @@ namespace Views.Views
         
         public void PopularGrid()
         {
-            DataTable dTable = venBs.ListarGridPorCliente();
+            DataTable dTable = venBs.ListarGridPorCliente(Session["cliente"] as Cliente);
 
             gdvVendaCliente.DataSource = dTable;
             gdvVendaCliente.DataBind();

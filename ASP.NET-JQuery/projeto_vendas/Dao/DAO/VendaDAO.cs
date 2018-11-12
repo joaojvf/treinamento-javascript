@@ -40,7 +40,7 @@ namespace Dao
             }
         }
 
-        public double BuscarValorTotal (Venda v)
+        public double BuscarValorTotal(Venda v)
         {
             try
             {
@@ -68,13 +68,17 @@ namespace Dao
             }
         }
 
-        public DataTable ListarGridPorCliente()
+        public DataTable ListarGridPorCliente(Cliente c)
         {
             try
             {
                 DataTable table = new DataTable();
-                MySqlDataAdapter sqlData = new MySqlDataAdapter("SELECT * FROM venda INNER JOIN cliente " +
-                    "ON cliente.id = venda.cliente_id", Connection.Instance);
+
+                MySqlCommand cmd = new MySqlCommand("SELECT * FROM venda, cliente " +
+                    "WHERE @id = cliente.id AND cliente.id = venda.cliente_id", Connection.Instance);
+                cmd.Parameters.AddWithValue("@id", c.Id);
+                MySqlDataAdapter sqlData = new MySqlDataAdapter(cmd);
+
                 sqlData.Fill(table);
 
                 return table;
@@ -84,6 +88,61 @@ namespace Dao
                 return null;
             }
 
+        }
+        public Venda Editar(Venda v)
+        {
+            try
+            {
+                MySqlCommand command = Connection.Instance.CreateCommand();
+
+                string sql = "UPDATE venda SET data_venda = @data, total_venda = @total WHERE id = @id";
+
+                command.CommandText = sql;
+                command.Parameters.AddWithValue("@data", v.DataVenda);
+                command.Parameters.AddWithValue("@total", v.TotalVenda);
+                command.Parameters.AddWithValue("@id", v.Id);
+                
+                return command.ExecuteNonQuery() > 0 ? v : null;
+
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+        public Venda BuscarPorId(int id)
+        {
+            try
+            {
+                MySqlCommand command = Connection.Instance.CreateCommand();
+
+                string sql = "SELECT * FROM venda WHERE id = @id";
+                command.CommandText = sql;
+                command.Parameters.AddWithValue("@id", id);
+
+                var reader = command.ExecuteReader();
+                Venda v = null;
+                while (reader.Read())
+                {
+                    v = new Venda()
+                    {
+                        Id = int.Parse(reader["id"].ToString()),
+                        
+                        TotalVenda = double.Parse(reader["total_venda"].ToString()),
+                    };
+                }
+                int cliente_id = -1;
+                cliente_id = int.Parse(reader["cliente_id"].ToString());
+                v.Cliente = new ClienteDAO().BuscarPorId(cliente_id);
+
+                reader.Close();
+
+                return v;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
         }
     }
 }

@@ -17,9 +17,19 @@ namespace Business.Business
             return venda.Inserir(v);
         }
 
-        public DataTable ListarGridPorCliente()
+        public DataTable ListarGridPorCliente(Cliente c)
         {
-            return venda.ListarGridPorCliente();
+            return venda.ListarGridPorCliente(c);
+        }
+
+        public Venda BuscarPorId(int id)
+        {
+            return venda.BuscarPorId(id);
+        }
+
+        public Venda Editar(Venda v)
+        {
+            return venda.Editar(v);
         }
     }
 }

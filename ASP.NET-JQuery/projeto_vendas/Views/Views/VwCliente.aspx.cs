@@ -51,7 +51,9 @@ namespace Views.Views
                 {
                     int id = int.Parse((string)e.CommandArgument);
                     Cliente cliente = cliBs.BuscarPorId(id);
+
                     Session["cliente"] = cliente;
+
                     Response.Redirect("~/Views/VwVendaPorCliente.aspx");
                 }
             }
