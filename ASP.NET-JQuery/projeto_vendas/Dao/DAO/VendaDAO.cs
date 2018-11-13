@@ -112,6 +112,7 @@ namespace Dao
                 return null;
             }
         }
+        
         public Venda BuscarPorId(int id)
         {
             try
@@ -129,15 +130,15 @@ namespace Dao
                     v = new Venda()
                     {
                         Id = int.Parse(reader["id"].ToString()),
-
-                        TotalVenda = double.Parse(reader["total_venda"].ToString()),
+                        
+                        TotalVenda = double.Parse(reader["total_venda"].ToString())
                     };
                 }
                 int cliente_id = -1;
                 cliente_id = int.Parse(reader["cliente_id"].ToString());
+                reader.Close();
                 v.Cliente = new ClienteDAO().BuscarPorId(cliente_id);
 
-                reader.Close();
 
                 return v;
             }

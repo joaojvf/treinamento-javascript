@@ -13,7 +13,7 @@ namespace Views.Views
     public partial class VwVendaPorCliente : System.Web.UI.Page
     {
         VendaBs venBs = new VendaBs();
-        
+
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -40,10 +40,8 @@ namespace Views.Views
                     venda = venBs.BuscarPorId(id);
 
                     venda.DataVenda = DateTime.Now;
-
                     venda = venBs.Editar(venda);
                     PopularGrid();
-                    // adiciona data atual para a venda clicada
                 }
             }
             catch (Exception ee)
@@ -66,7 +64,7 @@ namespace Views.Views
             PopularGrid();
 
         }
-        
+
         public void PopularGrid()
         {
             DataTable dTable = venBs.ListarGridPorCliente(Session["cliente"] as Cliente);
