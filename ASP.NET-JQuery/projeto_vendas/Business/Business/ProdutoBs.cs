@@ -33,6 +33,12 @@ namespace Business.Business
         {
             return produto.BuscarPorId(id);
         }
+
+        public DataTable ListarGridProdutoFornecedor()
+        {
+            return produto.ListarGridProdutoFornecedor();
+        }
+        
     }
 
    

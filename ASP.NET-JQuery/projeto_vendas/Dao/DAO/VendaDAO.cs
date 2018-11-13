@@ -39,34 +39,36 @@ namespace Dao
                 return null;
             }
         }
-
-        public double BuscarValorTotal(Venda v)
+        public Venda AtualizaSaldo(Venda v)
         {
+
             try
             {
-                MySqlCommand command = Connection.Instance.CreateCommand();
-
-                string sql = "SELECT SUM(valor) FROM venda AS v INNER JOIN  itens AS i ON v.id = i.venda_id " +
-                    "WHERE v.id = @id";
-                command.CommandText = sql;
-                command.Parameters.AddWithValue("@id", v.Id);
-                var reader = command.ExecuteReader();
-                double novoTotal = -1;
-                while (reader.Read())
+                try
                 {
-                    novoTotal = double.Parse(reader["valor"].ToString());
+                    MySqlCommand command = Connection.Instance.CreateCommand();
+
+                    string sql = "UPDATE venda SET  total_venda = @total WHERE id = @id";
+
+                    command.CommandText = sql;
+                    command.Parameters.AddWithValue("@total", v.TotalVenda);
+                    command.Parameters.AddWithValue("@id", v.Id);
+
+                    return command.ExecuteNonQuery() > 0 ? v : null;
+
                 }
-
-                reader.Close();
-
-                return novoTotal;
-
+                catch (Exception e)
+                {
+                    return null;
+                }
             }
-            catch (Exception e)
+            catch(Exception e)
             {
-                return -1;
+                return null;
             }
+
         }
+        
 
         public DataTable ListarGridPorCliente(Cliente c)
         {
@@ -101,7 +103,7 @@ namespace Dao
                 command.Parameters.AddWithValue("@data", v.DataVenda);
                 command.Parameters.AddWithValue("@total", v.TotalVenda);
                 command.Parameters.AddWithValue("@id", v.Id);
-                
+
                 return command.ExecuteNonQuery() > 0 ? v : null;
 
             }
@@ -127,7 +129,7 @@ namespace Dao
                     v = new Venda()
                     {
                         Id = int.Parse(reader["id"].ToString()),
-                        
+
                         TotalVenda = double.Parse(reader["total_venda"].ToString()),
                     };
                 }

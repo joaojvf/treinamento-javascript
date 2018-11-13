@@ -57,13 +57,30 @@ namespace Dao.DAO
             }
         }
 
-        public DataTable ListarGrid()
+        public DataTable ListarGridProdutoFornecedor()
         {
             try
             {
                 DataTable table = new DataTable();
                 MySqlDataAdapter sqlData = new MySqlDataAdapter("SELECT * FROM produto LEFT JOIN fornecedor" +
                     " ON produto.id_fornecedor = fornecedor.id", Connection.Instance);
+                sqlData.Fill(table);
+
+                return table;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+
+        }
+
+        public DataTable ListarGrid()
+        {
+            try
+            {
+                DataTable table = new DataTable();
+                MySqlDataAdapter sqlData = new MySqlDataAdapter("SELECT * FROM produto", Connection.Instance);
                 sqlData.Fill(table);
 
                 return table;

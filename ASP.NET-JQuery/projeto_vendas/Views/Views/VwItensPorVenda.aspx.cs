@@ -17,39 +17,71 @@ namespace Views.Views
         ProdutoBs prodBs = new ProdutoBs();
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                PopularGridProdutos();
+                PopularGridItensVenda();
+            }
 
         }
-
-        protected void gdvProdutos_RowUpdating(object sender, GridViewUpdateEventArgs e)
+        protected void gdvItensVenda_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            string strQtde = (gdvProdutos.Rows[e.RowIndex].FindControl("txtQuantidadeProduto") as TextBox).Text;
-            int qtde;
-
-
-            if (Int32.TryParse(strQtde, out qtde))
+            try
             {
-                Itens i = new Itens()
+                if (e.CommandName.Equals("Remover"))
                 {
-                    Quantidade = qtde,
-                };
+                    int id = int.Parse((string)e.CommandArgument); // pega o ID o datakey name da linha clicada
+                    Venda v = Session["venda"] as Venda;
+                    Itens i = itemBs.BuscarPorId(id);
+                    itemBs.Remover(i);
+                    PopularGridItensVenda();
+                }
+                else if (e.CommandName.Equals("Editar"))
+                {
 
-                Venda v = Session["venda"] as Venda;
-                int produto_id = e.RowIndex;
+                }
 
-                itemBs.Inserir(i, produto_id, v.Id);
+            }
+            catch (Exception ee)
+            {
 
-                //PopularGrid();
             }
         }
+        protected void gdvProdutos_RowUpdating(object sender, GridViewUpdateEventArgs e)
+        {
+            int qtde = Convert.ToInt32(((TextBox)(gdvProdutos.Rows[e.RowIndex].FindControl("txtQuantidadeProduto"))).Text);
+            double val = Convert.ToDouble(((Label)(gdvProdutos.Rows[e.RowIndex].FindControl("lblValorProduto"))).Text);
 
-        //public void PopularGrid()
-        //{
-        //    Venda v = Session["venda"] as Venda;
-        //    DataTable dTable = itemBs.ListarGridItensVenda(v.Id);
+            Itens i = new Itens()
+            {
+                Quantidade = qtde,
+                Valor = val
+            };
 
-        //    gdvProdutos.DataSource = dTable;
-        //    gdvProdutos.DataBind();
-        //}
+            Venda v = Session["venda"] as Venda;
+            int produto_id = (int)gdvProdutos.DataKeys[e.RowIndex].Value;
+
+            itemBs.Inserir(i, produto_id, v);
+
+            PopularGridItensVenda();
+
+        }
+
+        public void PopularGridItensVenda()
+        {
+            Venda v = Session["venda"] as Venda;
+            DataTable dTable = itemBs.ListarGridItensVenda(v.Id);
+
+            gdvItensVenda.DataSource = dTable;
+            gdvItensVenda.DataBind();
+        }
+
+        public void PopularGridProdutos()
+        {
+            DataTable dTable = prodBs.ListarGrid();
+            gdvProdutos.DataSource = dTable;
+            gdvProdutos.DataBind();
+        }
 
 
 

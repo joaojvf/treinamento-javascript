@@ -31,5 +31,10 @@ namespace Business.Business
         {
             return venda.Editar(v);
         }
+
+        public Venda AtualizaSaldo(Venda v)
+        {
+            return venda.AtualizaSaldo(v);
+        }
     }
 }

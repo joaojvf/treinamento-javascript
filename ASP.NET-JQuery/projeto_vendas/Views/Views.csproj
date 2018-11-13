@@ -68,13 +68,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
-    <None Include="Scripts\jquery-3.3.1.intellisense.js" />
-    <Content Include="Scripts\jquery-3.3.1.js" />
-    <Content Include="Scripts\jquery-3.3.1.min.js" />
-    <Content Include="Scripts\jquery-3.3.1.slim.js" />
-    <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
-    <Content Include="Scripts\script.js" />
     <Content Include="Views\script.js" />
+    <Content Include="Views\style.css" />
     <Content Include="Views\VwCliente.aspx" />
     <Content Include="Views\VwFornecedor.aspx" />
     <Content Include="Views\VwItensPorVenda.aspx" />
@@ -133,8 +128,6 @@
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Views\PaginaMestra.Master" />
-    <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
-    <Content Include="Scripts\jquery-3.3.1.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/PaginaMestra.Master" AutoEventWireup="true" CodeBehind="VwProduto.aspx.cs" Inherits="Views.VwProduto" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
@@ -36,36 +37,38 @@
             </div>
         </div>
 
+        <div class="tabela">
+            <asp:GridView ID="gdvProduto" runat="server" AutoGenerateColumns="False" CssClass="table table-hover view-table"
+                OnRowCommand="gdvProduto_RowCommand" DataKeyNames="id">
+                <Columns>
+                    <asp:TemplateField HeaderText="Nome">
+                        <ItemTemplate>
+                            <asp:Label ID="lblNome" runat="server" Text='<%# Bind("nome_produto") %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Valor">
+                        <ItemTemplate>
+                            <asp:Label ID="lblValor" runat="server" Text='<%# Bind("valor_produto") %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Fornecedor">
+                        <ItemTemplate>
+                            <asp:Label ID="lblFornecedor" runat="server" Text='<%# Bind("nome_fornecedor") %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField>
+                        <ItemTemplate>
+                            <asp:LinkButton ID="lkbRemover" runat="server" Text="Remover" CommandArgument='<%# Bind("id") %>' CommandName="Remover"></asp:LinkButton>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField>
+                        <ItemTemplate>
+                            <asp:LinkButton ID="lkbEditar" runat="server" Text="Editar" CommandArgument='<%# Bind("id") %>' CommandName="Editar"></asp:LinkButton>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                </Columns>
+            </asp:GridView>
+        </div>
 
-        <asp:GridView ID="gdvProduto" runat="server" AutoGenerateColumns="False" CssClass="table table-hover"
-            OnRowCommand="gdvProduto_RowCommand" DataKeyNames="id">
-            <Columns>
-                <asp:TemplateField HeaderText="Nome">
-                    <ItemTemplate>
-                        <asp:Label ID="lblNome" runat="server" Text='<%# Bind("nome_produto") %>'></asp:Label>
-                    </ItemTemplate>
-                </asp:TemplateField>
-                <asp:TemplateField HeaderText="Valor">
-                    <ItemTemplate>
-                        <asp:Label ID="lblValor" runat="server" Text='<%# Bind("valor_produto") %>'></asp:Label>
-                    </ItemTemplate>
-                </asp:TemplateField>
-                <asp:TemplateField HeaderText="Fornecedor">
-                    <ItemTemplate>
-                        <asp:Label ID="lblFornecedor" runat="server" Text='<%# Bind("nome_fornecedor") %>'></asp:Label>
-                    </ItemTemplate>
-                </asp:TemplateField>
-                <asp:TemplateField>
-                    <ItemTemplate>
-                        <asp:LinkButton ID="lkbRemover" runat="server" Text="Remover" CommandArgument='<%# Bind("id") %>' CommandName="Remover"></asp:LinkButton>
-                    </ItemTemplate>
-                </asp:TemplateField>
-                <asp:TemplateField>
-                    <ItemTemplate>
-                        <asp:LinkButton ID="lkbEditar" runat="server" Text="Editar" CommandArgument='<%# Bind("id") %>' CommandName="Editar"></asp:LinkButton>
-                    </ItemTemplate>
-                </asp:TemplateField>
-            </Columns>
-        </asp:GridView>
     </div>
 </asp:Content>

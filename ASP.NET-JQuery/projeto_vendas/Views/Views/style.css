@@ -1,0 +1,39 @@
+﻿.tabela {
+    border: solid #007bff 2px;
+    border-radius: 5px;
+    text-align: center;
+    padding: 20px;
+    margin-bottom: 2%;
+    margin-top: 2%;
+}
+
+
+
+.view-table {
+    border: none;
+}
+
+    .view-table tr * {
+        border: none;
+    }
+
+    .view-table tr:nth-child(2) td {
+        border-top: 1px solid lightgray;
+    }
+
+    .view-table tr td {
+        border-bottom: 1px solid lightgray;
+    }
+
+    .view-table tr:last-child td {
+        border-bottom: none;
+    }
+
+/*Remove a borda da primeia linha para as tabelas sem header*/
+.remove-border tbody tr:first-child td {
+    border-top: none;
+}
+/*Remove o efeito de hover dos cabeçalhos das tabelas*/
+.table-hover tbody tr:hover th {
+    background-color: white;
+}

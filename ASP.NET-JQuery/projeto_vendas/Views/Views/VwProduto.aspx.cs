@@ -59,7 +59,7 @@ namespace Views
 
         public void PopularGrid()
         {
-            DataTable dTable = prodBs.ListarGrid();
+            DataTable dTable = prodBs.ListarGridProdutoFornecedor();
 
             gdvProduto.DataSource = dTable;
             gdvProduto.DataBind();
